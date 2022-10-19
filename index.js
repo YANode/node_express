@@ -3,6 +3,9 @@ const path = require ('path');
 const app = express();
 const exphbs = require('express-handlebars'); //https://github.com/express-handlebars/express-handlebars
 const PORT = process.env.PORT || 3000;
+const mainRoutes = require('./routs/main');
+const addRoutes = require('./routs/add');
+const coursesRoutes = require('./routs/courses');
 
 
 const hbs = exphbs.create ({
@@ -14,29 +17,11 @@ app.engine('hbs', hbs.engine);
 app.set ('view engine', 'hbs');
 app.set('views', 'views');
 
-app.get('/', (req, res)=>{
-   res.render('index', {
-       title:"Main page",
-       isMain: true
-   });
-})
-
-app.get('/add', (req, res)=> {
-    res.render('add', {
-        title:'Add new course',
-        isAdd: true
-    });
-})
-
-app.get('/courses', (req, res) => {
-    res.render('courses', {
-        title:'Courses',
-        isCourses: true
-    });
-})
-
 
 app.use(express.static('public'))
+app.use('/', mainRoutes);
+app.use('/add', addRoutes);
+app.use('/courses', coursesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running ${PORT}`)
