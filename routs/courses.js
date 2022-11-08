@@ -1,10 +1,21 @@
-const {Router} = require('express');
-const router = Router();
+const {Router} = require('express'); //var express = require('express');
+const router = Router();            //var router = express.Router();
 
-router.get('/', (req, res) => {
+const Course = require('../models/course');//connect the "course.js" course creation model
+
+// content download by link
+router.get('/', async (req, res) => {// добавляем оператор async, т.к. испол. Promise в course.js
+
+
+
+     //to retrieve data read from getAll()
+    const courses = await Course.getAll();
+
+    //template code output
     res.render('courses', {
-        title:'Courses',
-        isCourses: true
+        title:'Courses', // seo-title the tab
+        isCourses: true, // active link to the page navbar.hbs
+        courses  //object to display on the page
     });
 })
 
