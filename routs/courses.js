@@ -4,7 +4,7 @@ const router = Router();            //var router = express.Router();
 const Course = require('../models/course');//connect the "course.js" course creation model
 
 // content download by link
-router.get('/', async (req, res) => {// добавляем оператор async, т.к. испол. Promise в course.js
+router.get('/', async (req, res) => {
 
 
 
