@@ -58,6 +58,13 @@ class Course {
         })
     }
 
+    //based on the id, get the one "course" from the database
+    static async getById(id) {
+        const courses  = await Course.getAll();
+        return courses.find(c => c.id === id); //iteration, comparison by identifier
+    }
+
+
 
 }
 
