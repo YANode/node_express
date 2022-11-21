@@ -18,6 +18,33 @@ router.get('/', async (req, res) => {
     });
 })
 
+
+//loading the contents of the 'edit' page by id
+router.get('/:id/edit', async (req, res) => {
+    if (!req.query.allow) {
+        return res.redirect('/')
+    }
+
+    //retrieve data from getById() by id
+    const course = await Course.getById(req.params.id)
+
+   //edit page output
+    res.render('course-edit', {
+        title: `Edit ${course.title}`,
+        course
+    })
+})
+
+
+// сhanged the data in the server database
+router.post('/edit', async (req, res) => {
+    await Course.update(req.body)
+    return res.redirect('/courses')
+})
+
+
+
+
 //content 'course' page download by id
 router.get('/:id', async (req, res) => {
     const course = await Course.getById(req.params.id);//the place where the identifier is stored

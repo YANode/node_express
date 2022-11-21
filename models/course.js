@@ -21,6 +21,33 @@ class Course {
         }
     }
 
+
+    //find and save the edited 'course' -> by id
+    static async update(course) {
+        const courses = await Course.getAll();
+
+        //find the 'course' index that we want to update
+        const idx = courses.findIndex(c => c.id === course.id); //iteration, returns the index in the array
+        courses[idx] = course;
+
+        //save the 'course' with the specified index
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'courses.json'),
+                JSON.stringify(courses),
+                (err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                }
+            )
+        })
+    }
+
+
+
     async save() {
 
         const courses = await Course.getAll();
@@ -41,6 +68,8 @@ class Course {
         })
     }
 
+
+
     static getAll() {
         return new Promise((resolve, reject) => {
             fs.readFile(
@@ -57,6 +86,8 @@ class Course {
             )
         })
     }
+
+
 
     //based on the id, get the one "course" from the database
     static async getById(id) {
