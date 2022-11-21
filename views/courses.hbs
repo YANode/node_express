@@ -17,11 +17,13 @@
                     </div>
                     <div class="card-action">
                         <a href="/courses/{{id}}" target="blank">Open the course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    {{else}}
-        <p>No courses</p>
-    {{/if}}
+                       {{!-- {{req.query.allow contains the URL query parameters - after the ? }} --}}
+                         <a href="/courses/{{id}}/edit?allow=true">Edit</a>
+    </div>
+</div>
+</div>
+</div>
+{{/each}}
+{{else}}
+<p>No courses</p>
+{{/if}}
