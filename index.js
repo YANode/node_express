@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const mainRoutes = require('./routs/main');
 const addRoutes = require('./routs/add');
 const coursesRoutes = require('./routs/courses');
+const cardRoutes = require('./routs/card');
 
 
 const hbs = exphbs.create ({
@@ -17,12 +18,13 @@ app.engine('hbs', hbs.engine);
 app.set ('view engine', 'hbs');
 app.set('views', 'views');
 
-
+//router registration
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use('/', mainRoutes);
 app.use('/add', addRoutes);
 app.use('/courses', coursesRoutes);
+app.use('/card', cardRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running ${PORT}`)
