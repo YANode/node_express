@@ -21,6 +21,14 @@
                 <li><a href="/add">Add Course</a></li>
             {{/if}}
 
-        </ul>
-    </div>
+
+            {{!-- {{added a link to the map}} --}}
+            {{#if isCard}}
+                <li class="active"><a href="/card">Basket</a></li>
+            {{else}}
+                <li><a href="/card">Basket</a></li>
+            {{/if}}
+
+</ul>
+</div>
 </nav>
