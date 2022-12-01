@@ -9,7 +9,7 @@ const Course = require('../models/course');
 //sending data to the server
 router.post('/add', async (req, res) => {
     const course = await Course.getById(req.body.id);
-    await Card.add(course)
+    await Card.add(course);
     res.redirect('/card')//redirecting the response
 })
 
@@ -17,11 +17,14 @@ router.post('/add', async (req, res) => {
 router.get('/', async (req, res) => {
     const card = await Card.fetch();
     res.render('card', {
-        title:'Basket',
-        card
+        title: 'Cart',
+        isCard: true,
+        courses: card.courses,
+        price: card.price
     })
 
 })
 
 //export the router object
 module.exports = router;
+
