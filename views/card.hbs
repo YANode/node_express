@@ -1,1 +1,32 @@
 <h1>Cart</h1>
+
+{{!-- {{ check: if there are any courses in the cart}} --}}
+{{#if courses.length}}
+{{!-- {{display content}} --}}
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each courses}} {{!-- {{iterate the "courses" array}} --}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{count}}</td>
+                <td>
+                    <button class="btn btn-small">Delete</button>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+    <p><strong>Price:</strong><span class="price">{{price}}</span></p>
+
+{{else}}
+    <p>Сart is empty</p>
+
+{{/if}}
