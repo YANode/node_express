@@ -1,5 +1,7 @@
 <h1>Cart</h1>
 
+{{!-- {{the root parent 'div' on which the event handler is added}} --}}
+<div id="card">
 {{!-- {{ check: if there are any courses in the cart}} --}}
 {{#if courses.length}}
 {{!-- {{display content}} --}}
@@ -17,16 +19,18 @@
                 <td>{{title}}</td>
                 <td>{{count}}</td>
                 <td>
-                    <button class="btn btn-small">Delete</button>
-                </td>
-            </tr>
-        {{/each}}
-        </tbody>
-    </table>
+            {{!--'js-remove, data-id = {{id}': for the event handler}} --}}
+            <button class="btn btn-small js-remove" data-id="{{id}}">Delete</button>
+        </td>
+    </tr>
+{{/each}}
+</tbody>
+</table>
 
-    <p><strong>Price:</strong><span class="price">{{price}}</span></p>
+<p><strong>Price:</strong><span class="price">{{price}}</span></p>
 
 {{else}}
-    <p>Сart is empty</p>
+<p>Сart is empty</p>
 
 {{/if}}
+</div>

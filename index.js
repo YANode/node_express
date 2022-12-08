@@ -8,7 +8,6 @@ const addRoutes = require('./routs/add');
 const coursesRoutes = require('./routs/courses');
 const cardRoutes = require('./routs/card');
 
-
 const hbs = exphbs.create ({
     defaultLayout: 'main',
     extname: 'hbs'
@@ -19,7 +18,7 @@ app.set ('view engine', 'hbs');
 app.set('views', 'views');
 
 //router registration
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use('/', mainRoutes);
 app.use('/add', addRoutes);
