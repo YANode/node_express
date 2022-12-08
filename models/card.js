@@ -59,6 +59,40 @@ class Card {
         })
 
     }
+
+
+    //delete the course by the given id (id-course)
+    static async remove(id) {
+
+        const card = await Card.fetch();//retrieve all data from the cart
+
+        //find the 'id-course' index in the array if the condition: 'cou/retrieve all data from the cartrses.id === id-course' is met
+        const idx = card.courses.findIndex(c => c.id === id);
+        const course = card.courses[idx];//assign to the variable 'course' the value of the index 'id-course' in the array
+
+        if (course.count === 1) {
+            //delete 'course', if true: 'courses.id' != 'id-course'
+            card.courses = card.courses.filter(c => c.id !== id)
+
+        } else {
+            //reduce the count of courses by 1
+            card.courses[idx].count--
+        }
+
+        //recalculate the total price in the cart
+        card.price -= course.price
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(p, JSON.stringify(card), (err) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(card)
+                }
+            })
+        })
+    }
 }
 
-module.exports = Card;
+
+module.exports = Card

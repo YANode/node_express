@@ -25,6 +25,17 @@ router.get('/', async (req, res) => {
 
 })
 
+
+
+router.delete('/remove/:id', async (req, res) => { //read the id of the 'course' to be deleted
+
+    const card = await Card.remove(req.params.id); //update the 'card' object with the received id
+
+    res.status(200).json(card); //send the 'card' to the server
+})
+
+
+
 //export the router object
 module.exports = router;
 
